@@ -1,0 +1,91 @@
+secureTextEnter- used for secure password like***
+
+import React, { useState } from "react";
+import { View, Text, TextInput, StyleSheet, Button, TouchableOpacity } from "react-native";
+import AntDesign from '@expo/vector-icons/AntDesign';
+
+const App = () => {
+
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [display, setDisplay] = useState(false);
+  const [security, setSecurity] = useState(true);
+
+
+  const clear = () => {
+    setDisplay(false);
+    setName("");
+    setPassword("");
+    setEmail("");
+  }
+
+  const Look = () => {
+    if (security == true) {
+      setSecurity(false);
+    }
+    else {
+      setSecurity(true);
+    }
+  }
+
+
+
+  return (
+    <View style={StyleSheet.Conatiner}>
+
+      <TextInput placeholder="Enter your name"
+        style={styles.TextInput}
+        onChangeText={(text) => setName(text)}
+        value={name}
+
+      />
+      <TextInput placeholder="Enter your Email"
+        style={styles.TextInput}
+        onChangeText={(text) => setEmail(text)}
+        value={email}
+      />
+      <TouchableOpacity style={{ flexDirection: 'row' }} onPress={Look}>
+        <TextInput placeholder="Enter your password"
+          style={styles.TextInput}
+          onChangeText={(text) => setPassword(text)}
+          value={password}
+          secureTextEntry={security}
+
+
+        />
+
+        <AntDesign name="eye" size={24} color="black" />
+      </TouchableOpacity>
+
+      <Button title="Display" onPress={() => setDisplay(true)} />
+      <Button title=" Clear" onPress={clear} />
+      {
+        display ? <View>
+          <Text>{name}</Text>
+          <Text>{email}</Text>
+          <Text>{password}</Text>
+        </View> : null
+      }
+
+    </View>
+  )
+};
+
+export default App;
+
+const styles = StyleSheet.create({
+  Conatiner: {
+
+  },
+  TextInput: {
+    marginLeft: 50,
+    marginTop: 30,
+    borderWidth: 1,
+    width: 250,
+    textAlign: 'center',
+    borderRadius: 5.
+
+
+  }
+})

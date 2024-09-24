@@ -1,0 +1,60 @@
+props are the properties which is uded to pass the properties of one component to another component.
+    
+    const App=()=>{
+        return(
+            <User name={"soumya"} />  // Passing constant data
+        )
+    }
+
+    const User=(props)=>{
+         return(
+                {props.name}
+        )
+    }
+
+    // passing value of variable to another component
+
+    let name="Jagan";
+    const App=()>{
+        return (
+            <User name={name}/>
+        )
+    }
+
+
+        const User=(props)=>{
+            return(
+                {props.name}
+            )
+        }
+
+
+value of variable cannot be update in react native
+
+        const [name,setName]=useState("Soumya");
+        const App=()=>{
+            return(
+                <Button  onPress={()=>setName("Jagan")}/>
+                <User name={soumya} /> //more than one props can be pass 
+            )
+        }
+
+        const User=(props)=>{
+            return(
+                    {props.name}
+            )
+        }
+
+
+taking textinput value from the User
+        const [name,setName]=useState("");
+        const App=()=>{
+            return(
+                <Text>{name}</Text>
+                <TextInput 
+                onChangeText={(text)=>setName(text)}
+                value={name}
+                 />
+                 <Button onPress={()=>setName("")}  /> // clear textInput value
+            )
+        }

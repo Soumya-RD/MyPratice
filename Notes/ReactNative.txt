@@ -1,0 +1,40 @@
+LIFE CYCLE METHOD 
+mounting : when componet get execuited / when componet call
+Update:when component get change
+Unmounting:when we remove from the UI(home page -> setting page , here home page get unmounted)
+
+Props :
+        example:<Component variable={{value1,value2}}/>
+                const component=(props)=>{
+                    log(props.variable)
+                }
+
+
+
+HOOKS:(version 16.8)
+    by using hooks we can use the state and other function inside functional component    
+        -> state 
+        ->lifecycle method 
+        ->ref and memo
+        ->context api
+
+
+useEffect hook:
+we cannot use the lifecycle method inside the functional component directly, by the help of useEffect hook it can possible. 
+example:
+        import useEffect
+        useEffect(()=>{  //call automatically or mount for every updation
+            log('message')
+        },[])  // blank array means it call once when component mount //componentDidMount
+
+
+componentDidUpdate:
+    execuite when the component update
+        example : useEffect(()=>{
+            log('message);
+        },[state_name]); //works for perticular state
+
+        example:
+        useEffect(()=>{
+            log('message);
+        },[state_name1,state_name2]); //works for perticular 2 state
