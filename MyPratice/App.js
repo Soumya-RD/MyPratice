@@ -1,130 +1,36 @@
-import React, { useEffect, useState } from "react";
-import { Button, StyleSheet, TextInput, View, Text, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { TouchableOpacity, View, StyleSheet, Text, Button } from "react-native";
 
 const App = () => {
-    const [name, setName] = useState("");
-    const [age, setAge] = useState("");
-
-    const [dispaly, setDisplay] = useState(false);
-    const [color, setColor] = useState("");
-
-    const allclear = () => {
-        setDisplay(false);
-        setName("");
-        setAge("");
+    const [bgcolor, setBgcolor] = useState("#fff");
+    const changeColor = () => {
+        setBgcolor(color => (color === "#fff" ? "#000" : "#fff"));
     }
-
-    useEffect(() => {
-
-    }, [dispaly]);
-
+    const changeTextColor = bgcolor === "#fff" ? "#000" : "#fff";
     return (
-        <View style={styles.Container}>
-            <TextInput placeholder="Enter your name"
-                style={[styles.TextInput, { marginTop: 150 }]}
-                onChangeText={(text) => setName(text)}
-                value={name}
-            />
-            <TextInput placeholder="Enter your age"
-                onChangeText={(text) => setAge(text)}
-                style={styles.TextInput}
-                value={age}
-                maxLength={3}
-            />
-            <View style={styles.BottomView}>
-                <TouchableOpacity onPress={() => setDisplay(true)}
-                    style={styles.CheckButtom}
-                >
-                    <Text style={styles.CheckText}>Check</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={allclear}
-                    style={styles.ClearBottom}
-                >
-                    <Text style={styles.ClearText}>Clear</Text>
-                </TouchableOpacity>
-
-            </View>
-
-            {
-                dispaly ? <View>{
-
-                    age >= 18 ? <View style={styles.resultView}>
-                        <Text style={styles.resultText}>Thank you {name}, for checking your eligibility</Text>
-                        <Text style={styles.resultText}>Congratulate !You are eligible for voting, your age is {age}</Text>
-
-
-                    </View> : <View style={styles.resultView}>
-                        <Text style={styles.resultText}>Thank you {name}, for checking your eligibility</Text>
-                        <Text style={styles.resultText}>Sorry ! You'r not eligible for voting, your age is {age}</Text>
-                    </View>
-                }</View> : null
-            }
+        <View style={[styles.Conatiner, { backgroundColor: bgcolor }]}>
+            <TouchableOpacity onPress={changeColor} style={styles.Button}>
+                <Text style={[styles.buttonText, { color: changeTextColor }]}>SWAP</Text>
+            </TouchableOpacity>
+            <Text style={[styles.text, { color: changeTextColor }]}>Jay Jagannath Odisha!</Text>
+            <Text style={[styles.text, { color: changeTextColor }]}> My self Soumya Ranjan Dalai</Text>
+            <Text style={[styles.text, { color: changeTextColor }]}>From Bhadrak,BAsudevpur</Text>
         </View>
-    )
-}
+    );
+};
 
 export default App;
 const styles = StyleSheet.create({
-    Container: {
-        flex: 1,
-        backgroundColor: '#bfdbf7'
-    },
-    TextInput: {
-        borderWidth: 1,
-        padding: 2,
-        marginTop: 5,
-        width: 270,
-        borderRadius: 5,
-        textAlign: 'center',
-        marginLeft: 45,
-        marginTop: 10,
-        backgroundColor: "#f1faee",
-        fontWeight: 'bold'
-    },
-    BottomView: {
-        flexDirection: 'row'
-    },
-    CheckButtom: {
-        borderWidth: 1,
-        height: 30,
-        width: 100,
-        borderRadius: 10,
-        marginTop: 15,
-        marginLeft: 70,
-        backgroundColor:'#283618'
-    },
-    CheckText: {
-        fontWeight: 'bold',
-        padding: 4,
-        textAlign: 'center',
-        color:"#fff"
-    },
-    ClearBottom: {
-        borderWidth: 1,
-        height: 30,
-        width: 100,
-        borderRadius: 10,
-        marginTop: 15,
-        marginLeft: 10,
-         backgroundColor:'#e63946'
-    },
-    ClearText: {
-        fontWeight: 'bold',
-        padding: 4,
-        textAlign: 'center',
-        color:'#fff'
-    },
-    resultView: {
+    Conatiner: {
         marginTop: 100,
-        height:60,
-        backgroundColor:'#264653'
-
+        marginLeft: 100,
+        flex:1
     },
-    resultText: {
-        textAlign: 'center',
-        fontWeight: 'bold',
-        fontSize: 17,
-        color:"#fff"
+    Button: {
+        borderWidth: 1,
+        width: 70,
+        marginLeft: 100,
+        backgroundColor:'green'
     }
+
 })
