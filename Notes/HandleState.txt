@@ -1,0 +1,67 @@
+   1]] Change value of state by buttom click
+   
+                import React, { useState } from "react";
+                import { View, StyleSheet, Button, Text } from "react-native";
+
+                const App = () => {
+                    const [text, setText] = useState("Ram");
+                    const changeName = () => {
+                        if (text == "Ram") {
+                            setText("Sita");
+                        }
+                        else {
+                            setText("Ram");
+                        }
+                    }
+                    return (
+                        <View style={{ marginTop: 200 }}>
+                            <Text>{text}</Text>
+                            <Button title="Click" onPress={changeName} />
+
+                        </View>
+                    );
+                }
+                export default App;
+
+
+
+2]] Handel form with display, Hide and Clear buttom
+
+            import React, { useState } from "react";
+            import { View, StyleSheet, Button, Text, TextInput } from "react-native";
+
+            const App = () => {
+                const [text, setText] = useState("");
+                const [display, setDisplay] = useState(false);
+                const hide = () => {
+                    setDisplay(false);
+                }
+                const clear = () => {
+                    setText("");
+                }
+
+
+            return (
+                <View style={{ marginTop: 200 }}>
+                    <TextInput placeholder="Enter your name"
+                        onChangeText={(text) => setText(text)}
+                        value={text}
+                    />
+                    <Button title="Display" onPress={() => setDisplay(true)} />
+                    <Button title="Hide" onPress={hide} />
+                    <Button title="Clear" onPress={clear} />
+                    {
+                        display ? <View>
+                            <Text>
+                                {text}
+                            </Text>
+
+                        </View> : null
+                    }
+                </View>
+            );
+            }
+            export default App;
+            const styles = StyleSheet.create({
+
+            })
