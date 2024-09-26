@@ -1,36 +1,16 @@
-import React, { useState } from "react";
-import { TouchableOpacity, View, StyleSheet, Text, Button } from "react-native";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 const App = () => {
-    const [bgcolor, setBgcolor] = useState("#fff");
-    const changeColor = () => {
-        setBgcolor(color => (color === "#fff" ? "#000" : "#fff"));
-    }
-    const changeTextColor = bgcolor === "#fff" ? "#000" : "#fff";
+    const Stack = createStackNavigator();
     return (
-        <View style={[styles.Conatiner, { backgroundColor: bgcolor }]}>
-            <TouchableOpacity onPress={changeColor} style={styles.Button}>
-                <Text style={[styles.buttonText, { color: changeTextColor }]}>SWAP</Text>
-            </TouchableOpacity>
-            <Text style={[styles.text, { color: changeTextColor }]}>Jay Jagannath Odisha!</Text>
-            <Text style={[styles.text, { color: changeTextColor }]}> My self Soumya Ranjan Dalai</Text>
-            <Text style={[styles.text, { color: changeTextColor }]}>From Bhadrak,BAsudevpur</Text>
-        </View>
-    );
-};
-
+        < NavigationContainer>
+            <Stack.Navigator initialRouteName="User1">
+                <Stack.Screen name="User1" component={User1} />
+                <Stack.Screen name="User2" component={User2} />
+            </Stack.Navigator>
+        </ NavigationContainer>
+    )
+}
 export default App;
-const styles = StyleSheet.create({
-    Conatiner: {
-        marginTop: 100,
-        marginLeft: 100,
-        flex:1
-    },
-    Button: {
-        borderWidth: 1,
-        width: 70,
-        marginLeft: 100,
-        backgroundColor:'green'
-    }
-
-})
